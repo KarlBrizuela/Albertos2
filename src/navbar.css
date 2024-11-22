@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    font-family: 'Poppins';font-size: 20px;
+    box-sizing: border-box;
+}
+.navbar{
+    height:90px;
+    max-width:100%;
+  
+}
+.navbar-nav{
+    margin-left:200px;
+}
+.Albertos-logo{
+    height: 300px;
+    margin-top:2px;
+    
+}
+
+@media (max-width: 768px) {
+    .navbar .navbar-bar {
+      text-align: center;
+      width: 100%;
+    }
+    .navbar-nav .nav-item {
+        width: 100%;
+        padding: 10px 0;
+      }
+      .Albertos-logo {
+       
+        width: 70%; /* Adjust logo size for mobile */
+      }
+
+}
+
+@media (min-width: 992px) {
+    .navbar-nav .nav-item {
+      padding: 0 20px; /* Increase spacing for larger screens */
+    }
+    
+  }
