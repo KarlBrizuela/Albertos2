@@ -39,23 +39,23 @@ function Homepage() {
           </a>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="#">
+          <a className="nav-link" href="#services">
             Services
           </a>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="#">
+          <a className="nav-link" href="#gallery">
             Gallery
           </a>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="#">
+          <a className="nav-link" href="#contact">
             Contact
           </a>
         </li>
         {/* 6th item is a button */}
         <li className="nav-item">
-          <button className="btn btn-primary">Sign Up</button>
+          <button className="btn btn-primary">Log in</button>
         </li>
       </ul>
     </div>
@@ -101,7 +101,7 @@ function Homepage() {
               className="d-block w-100 h-90"
               alt="Slide 1"
             />
-            <div className="carousel-caption d-none d-md-block">
+            <div className="carousel-caption  d-md-block">
             <p>Book Swim Unwind</p>
             <h1>Your Relaxing Gateway <br></br>Awaits!</h1>
             <button type="button" className="startbtn">Get Start</button>
@@ -113,7 +113,7 @@ function Homepage() {
               className="d-block w-100"
               alt="Slide 2"
             />
-            <div className="carousel-caption d-none d-md-block">
+            <div className="carousel-caption  d-md-block">
               <p>Book Swim Unwind</p>
               <h1>A Slide of Paradise for<br></br>each Guest</h1>
              <button type="button" className="startbtn">Get Start</button>
@@ -125,7 +125,7 @@ function Homepage() {
               className="d-block w-100"
               alt="Slide 3"
             />
-            <div className="carousel-caption d-none d-md-block">
+            <div className="carousel-caption  d-md-block">
             <p>Book Swim Unwind</p>
             <h1>A Peacefull Place For Family<br></br>and Friends</h1>
             <button type="button" className="startbtn">Get Start</button>
@@ -207,8 +207,299 @@ function Homepage() {
         </p>
        </div>
 
+       <div class="choose_albertos">
+        <h3>Why Choose Albertos's</h3>
+        <div class="boxes">
+            <div class="box">
+                <h2>Private and Public Spaces</h2>
+                <p>Choose from a variety of private rooms or enjoy shared areas<br/>
+                where you can meet others and relax.</p>
+            </div>
+            <div class="box">
+                <h2>Affordable Getaway</h2>
+                <p>Our goal is to offer peace without the luxury price.</p>
+            </div>
+            <div class="box">
+                <h2>Friendly Atmosphere</h2>
+                <p>Our team is here to make sure your stay is as comfortable and enjoyable as possible. Expect a welcoming environment and warm hospitality.</p>
+            </div>
+        </div>
+    </div>
+    
+
+  
+{/*offers*/}
+
+
+  <div id="services" className="services-container">
+    <div className="Services">
+      <h1>services</h1>
+      <p>services</p>
+      <h5>what we offer for you</h5>
+    </div>
+  </div>
+
+  <div class="grid-container">
+    <div class="grid-item">
+      <img src="Bedroom.png" alt=""></img>
+      <h3>Bedrooms</h3>
+      <p>Double Deck Beds, Bedrooms With air<br/>
+     Conditioning All with Toilet and shower, All<br/>
+   Rooms Are safe and secur ed with Locks, <br/>
+   Sound Proofing, and Fresh Lines</p>
+    </div>
+    <div class="grid-item">
+      <img src="ERoom.png" alt=""></img>
+      <h3>Entertainment Room</h3>
+    <p>Equipped With Split-type Air-Conditioning,<br/>
+    Offers A Cool, Comfortable Atmosphere<br/>
+    Cozy, Soundproof Space, Large Glass<br/>
+   Windows and Doors. With push Seating.</p>
+    </div>
+    <div class="grid-item">
+      <img src="Kitchen.png" alt=""></img>
+      <h3>Kitchen</h3>
+    <p>Clean And Dirty Kitchen Area, Clean Kitchen<br/>
+    With Back, Clean Sink For Dirty<br/>
+   Reusable Dished, with Gasoline Ready To<br/>
+  Use And Few Kitchen Equipment</p>
+    </div>
+    <div class="grid-item">
+      <img src="showerRoom.png" alt=""></img>
+      <h3>Shower Room</h3>
+    <p>Refresh Yourself in Our Shower Room<br/>
+    Design For Convenience And Relaxation.<br/>
+   Located Near The pool, Offer A Refresh<br/>
+  Pre-or Post-Swim Rinse. Provide.</p>
+    </div>
+    <div class="grid-item">
+      <img src="Parking.png" alt=""></img>
+      <h3>Parking</h3>
+    <p>Parking Area Accomodates 2 cars or 4 <br/>
+      Motorcycle,Providing flexible option for<br/>
+    Our Guest.It Ensure A smooth transition<br/>
+  Between Parking and The Resort.
+</p>
+    </div>
+    <div class="grid-item">
+      <img src="wifi.png" alt=""></img>
+      <h3>Wifi</h3>
+    <p>Parking Area Accomodates 2 cars or 4 <br/>
+      Motorcycle,Providing flexible option for<br/>
+    Our Guest.It Ensure A smooth transition<br/>
+  Between Parking and The Resort.
+</p>
+    </div>
+    
+  </div>
+
+  <div class="services-containers">
+    <div class="services-room">
+      <img src="Room1_home.png" alt="Double Deck Bedroom" />
+      <div class="room-text">
+        <h2>Double Deck Bedrooms</h2>
+        <p>
+          Perfect for families or groups, our double-deck bedrooms offer a cozy<br/>
+          and efficient space with bunk beds designed for comfort and<br/>
+          convenience. Enjoy a relaxed stay with essentials provided, ideal for<br/>
+          budget-friendly accommodations.
+        </p>
+      </div>
+    </div>
+  
+    <div class="services-room alternate">
+      <div class="room-text">
+        <h2>Master Bedrooms</h2>
+        <p>
+          Experience a restful night's sleep in our master bedrooms. Designed<br/>
+          with simplicity and comfort in mind, these rooms feature spacious beds<br/>
+          and essential amenities, providing a private, comfortable retreat<br/>
+          during your stay.
+        </p>
+      </div>
+      <img src="Room2_home.png" alt="Master Bedroom" />
+    </div>
+  </div>
+  <div id="gallery" className="Gallery-container">
+    <div className="Gallery">
+      <h1>Gallery</h1>
+      <p>Gallery</p>
+      <h5>Best shared photos</h5>
+    </div>
+  </div>
+
+
+   {/*Gallery*/}
+    
+   <div className="gallerypic">
+    <div class="gallery-item">
+      <img src="Pic1.jpg" alt="Image 1"></img>
+    </div>
+    <div class="gallery-item">
+      <img src="Pic2.jpg" alt="Image 2"></img>
+    </div>
+    <div class="gallery-item">
+      <img src="pic3.png" alt="Image 3"></img>
+    </div>
+    <div class="gallery-item">
+      <img src="pic4.jpg" alt="Image 4"></img>
+    </div>
+    <div class="gallery-item">
+      <img src="pic5.jpg" alt="Image 5"></img>
+    </div>
+    <div class="gallery-item">
+      <img src="pic6.jpg" alt="Image 6"></img>
+    </div>
+    <div class="gallery-item">
+      <img src="pic7.jpg" alt="Image 7"></img>
+    </div>
+    <div class="gallery-item">
+      <img src="pic8.jpg" alt="Image 8"></img>
+    </div>
+    <div class="gallery-item">
+      <img src="pic9.jpg" alt="Image 9"></img>
+    </div>
+    <div class="gallery-item">
+      <img src="pic10.jpg" alt="Image 10"></img>
+    </div>
+    <div class="gallery-item">
+      <img src="pic11.jpg" alt="Image 11"></img>
+    </div>
+    <div class="gallery-item">
+      <img src="pic12.jpg" alt="Image 12"></img>
+    </div>
+  </div>
+
+
+  <div className="Destination-container">
+    <div className="Destination">
+      <h1>DESTINATION</h1>
+      <p>Destination</p>
+      <h5>What are you waiting for?Travel now</h5>
+    </div>
+  </div>
+
+  <div className="Location">
+  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3667.190271851963!2d121.05163437487606!3d14.764234985741796!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397b0205d3903b7%3A0xe7e87aeef6b298b1!2sSally%20Lugawan%20%26%20Store!5e1!3m2!1sen!2sus!4v1733668087243!5m2!1sen!2sus"></iframe>
+  </div>
+
+  <div id="contact" className="Contact-container">
+    <div className="Contact">
+      <h1>CONTACT</h1>
+      <p>Contact</p>
+      <h5>Get in touch with our team</h5>
+    </div>
+  </div>
+
+  
+  <div class="contact-container">
+  
+    <div class="contact-left">
+      <h2>Get in Touch</h2>
+      <p>
+        call us<br>
+       </br>09486096986
+       <br></br>
+       <br></br>
+       visit us<br></br>
+       102 villa imleda hidalgo street Area D<br></br>
+       Camarin caloocan city, philippines.
+       <br></br>
+       <br></br>
+       Email us<br></br>
+       karl.brizuela01@gmail.com
+      </p>
+    </div>
+
+    
+    <div class="contact-right">
+      <form>
+        <div class="form-group">
+          <label for="name">Your Name</label>
+          <input type="text" id="name" placeholder="Enter your name" required></input>
+        </div>
+        <div class="form-group">
+          <label for="email">Your Email</label>
+          <input type="email" id="email" placeholder="Enter your email" required></input>
+        </div>
+        <div class="form-group">
+          <label for="phone">Your Phone</label>
+          <input type="tel" id="phone" placeholder="Enter your phone number" required></input>
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" placeholder="Write your message here" rows="5" required></textarea>
+        </div>
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+  </div>
+  <footer class="footer">
+    <div class="footer-container">
       
+      <div class="footer-section about">
+        <h3>About</h3>
+        <p>
+          Providing a welcoming escape where you can unwind and enjoy refreshing,
+          comfortable environment. We are committed to offering a balance of
+          family-friendly fun and peaceful relaxation, with amenities designed for
+          comfort.
+        </p>
+        <p>
+          Be your go-to destination if you're seeking a unique blend of relaxation
+          and family fun, creating memorable experiences.
+        </p>
+      </div>
+
+      
+      <div class="footer-section contact">
+        <h3>Contact</h3>
+        <p>102 Villa Imelda Hidalgo Street Area D<br/>Camarin Caloocan City, Philippines</p>
+        <p>Jhon.doe@gmail.com</p>
+        <p>+63 912 345 6789</p>
+      </div>
+
+      
+      <div class="footer-section links">
+        <h3>Links</h3>
+        <ul>
+          <li><a href="#">About Hotel</a></li>
+          <li><a href="#">Our Rooms</a></li>
+          <li><a href="#">Services</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">Gallery</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms and Conditions</a></li>
+          <li><a href="#">Get Directions</a></li>
+        </ul>
+      </div>
+
+     
+      <div class="footer-section signup">
+        <h3>Sign Up</h3>
+        <p>Sign up for our news, deals and special offers.</p>
+        <form>
+        </form>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>
+        Copyright © 2024 by Alberto's Resort. All Rights Reserved.
+      </p>
+      <div className="logo-footer">
+      <img src="footer-logo.png"></img>
+      </div>
+      <div class="social-icons">
+        <a href="#"><img src="Facebook.png" alt="Facebook"></img></a>
+        <a href="#"><img src="Instagram.png" alt="Instagram"></img></a>
+        <a href="#"><img src="Group.png" alt="Twitter"></img></a>
+      </div>
+    </div>
+  </footer>
     </>
+   
+
   );
 }
 
