@@ -1,10 +1,77 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js"; // Include for Bootstrap JS functionality
 import "./navbar.css";
 import "./homepage.css";
+import axios from "axios"; // Ensure axios is imported after installing it
 
 function Homepage() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [user, setUser] = useState(null); 
+  const [showModal, setShowModal] = useState(true);
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post('http://localhost:5000/login', { email, password });
+
+      // Store token in localStorage
+      localStorage.setItem('token', response.data.token);
+
+      // Fetch user details
+      const userResponse = await axios.get('http://localhost:5000/getUser', {
+        headers: { Authorization: `Bearer ${response.data.token}` },
+      });
+      setUser(userResponse.data);
+      alert('Login successful');
+      setShowModal(false);
+    } catch (error) {
+      console.error('Login error:', error);
+      alert('Invalid credentials');
+    }
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    setUser(null);
+    setShowModal(true);
+    window.location.href = '/';
+  };
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
+
+  useEffect(() => {
+    if (user) {
+      localStorage.setItem('user', JSON.stringify(user));
+    }
+  }, [user]);
+
+
+
+  // Check for existing user data in localStorage on component mount
+  useEffect(() => {
+    const storedUser = localStorage.getItem('user'); // Retrieve user data from localStorage
+    if (storedUser) {
+      setUser(JSON.parse(storedUser)); // Parse and set user data
+    }
+  }, []); // Run only once on mount
+
+  // this code saves the User data
+  useEffect(() => {
+    if (user) {
+      localStorage.setItem('user', JSON.stringify(user)); // Store user data in localStorage
+    } else {
+      localStorage.removeItem('user'); // Remove user data if user is logged out
+    }
+  }, [user]); // Run whenever user state changes
+
   return (
     <>
      <nav className="navbar navbar-expand-lg navbar-light">
@@ -55,14 +122,70 @@ function Homepage() {
         </li>
         {/* 6th item is a button */}
         <li className="nav-item">
-          <button className="btn btn-primary">Log in</button>
+          <button className="btn btn-primary"
+          data-bs-toggle="modal"
+          data-bs-target="#staticBackdrop1">Log in</button>
         </li>
       </ul>
     </div>
   </div>
 </nav>
 
-     
+<div
+        className="modal fade"
+        id="staticBackdrop1"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel1"
+        aria-hidden="true"
+         data-bs-backdrop="false"
+      >
+        <div className="modal-dialog d-flex justify-content-center">
+          <div className="modal-content w-75">
+            <div className="modal-header">
+              <h5 className="modal-title" id="exampleModalLabel1">
+                Sign in
+              </h5>
+              <button
+          type="button"
+          className="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+            </div>
+            <div className="modal-body p-4">
+            <form onSubmit={handleLogin}>
+                      <div className="form-outline mb-4">
+                        <label className="form-label" htmlFor="email1">Email address</label>
+                        <input
+                          type="email"
+                          id="email1"
+                          className="form-control"
+                          onChange={(e) => setEmail(e.target.value)}
+                        />
+                      </div>
+                      <div className="form-outline mb-4">
+                        <label className="form-label" htmlFor="password1">Password</label>
+                        <input
+                          type="password"
+                          id="password1"
+                          className="form-control"
+                          onChange={(e) => setPassword(e.target.value)}
+                        />
+                      </div>
+                      <button type="submit" className="btn btn-primary btn-block">Login</button>
+                    </form>
+
+            {/* Logout Button */}
+            {user && (
+              <button onClick={handleLogout} className="btn btn-danger mt-4">
+                Logout
+              </button>
+            )}
+            </div>
+          </div>
+        </div>
+      </div>
+  
       {/* Carousel Section */}
       <div
         id="Home"
@@ -104,7 +227,8 @@ function Homepage() {
             <div className="carousel-caption  d-md-block">
             <p>Book Swim Unwind</p>
             <h1>Your Relaxing Gateway <br></br>Awaits!</h1>
-            <button type="button" className="startbtn">Get Start</button>
+            <a href="/booking">
+            <button type="button" className="startbtn">Get Start</button></a>
             </div>
           </div>
           <div className="carousel-item">
@@ -116,7 +240,8 @@ function Homepage() {
             <div className="carousel-caption  d-md-block">
               <p>Book Swim Unwind</p>
               <h1>A Slide of Paradise for<br></br>each Guest</h1>
-             <button type="button" className="startbtn">Get Start</button>
+              <a href="/booking">
+             <button type="button" className="startbtn">Get Start</button></a>
             </div>
           </div>
           <div className="carousel-item">
@@ -128,7 +253,8 @@ function Homepage() {
             <div className="carousel-caption  d-md-block">
             <p>Book Swim Unwind</p>
             <h1>A Peacefull Place For Family<br></br>and Friends</h1>
-            <button type="button" className="startbtn">Get Start</button>
+            <a href="/booking">
+            <button type="button" className="startbtn">Get Start</button></a>
             </div>
           </div>
         </div>
@@ -414,17 +540,17 @@ function Homepage() {
     
     <div class="contact-right">
       <form>
-        <div class="form-group">
+        <div class="form-group" method="POST" action="/send-email">
           <label for="name">Your Name</label>
-          <input type="text" id="name" placeholder="Enter your name" required></input>
+          <input type="text" id="name" name="user_name" placeholder="Enter your name" required></input>
         </div>
         <div class="form-group">
           <label for="email">Your Email</label>
-          <input type="email" id="email" placeholder="Enter your email" required></input>
+          <input type="email" id="email" name="user_email" placeholder="Enter your email" required></input>
         </div>
         <div class="form-group">
           <label for="phone">Your Phone</label>
-          <input type="tel" id="phone" placeholder="Enter your phone number" required></input>
+          <input type="tel" id="phone" name="user_phone" placeholder="Enter your phone number" required></input>
         </div>
         <div class="form-group">
           <label for="message">Message</label>
@@ -499,8 +625,10 @@ function Homepage() {
   </footer>
     </>
    
-
+  
   );
+  
+
 }
 
 export default Homepage;

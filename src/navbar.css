@@ -41,6 +41,14 @@
 .navbar img{
     margin-left: 150px
 }
+.modal a{
+  font-size:0.8rem;
+}
+.modal-body{
+  height:350px;
+  padding:10px;
+}
+
 
 @media (max-width:468px){
   .navbar{

@@ -1,124 +1,198 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>nigger</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- Bootstrap CSS -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Room Buttons with Images and Unique Modal Notes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    /* Room card styling */
+    .room-card {
+      display: inline-block;
+      margin: 10px;
+      padding: 10px;
+      text-align: center;
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      width: 150px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+    .room-card img {
+      width: 100%;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+    .room-card p {
+      margin: 5px 0;
+      font-size: 16px;
+    }
+    .room-card .button-container {
+      margin-top: 10px;
+    }
+    .room-card button {
+      padding: 5px 10px;
+      font-size: 14px;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      margin: 5px;
+    }
+    .room-card .book-button {
+      background-color: #4CAF50;
+      color: white;
+    }
+    .room-card .book-button:hover {
+      background-color: #45a049;
+    }
+    .room-card .note-button {
+      background-color: #ff9800;
+      color: white;
+    }
+    .room-card .note-button:hover {
+      background-color: #e68900;
+    }
 
-<!-- Bootstrap JS and Popper.js -->
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
-
+    /* Unique Modal styling */
+    .unique-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    .unique-modal-content {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      width: 300px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    .unique-modal-content img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 5px;
+      margin-bottom: 15px;
+    }
+    .unique-modal-content h2 {
+      margin-bottom: 10px;
+    }
+    .unique-modal-content p {
+      margin-bottom: 20px;
+    }
+    .unique-modal-content button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .unique-modal-content button:hover {
+      background-color: #45a049;
+    }
+  </style>
 </head>
 <body>
-   
-    <div class="choose_albertos">
-        <h3>Why Choose Albertos's</h3>
-        <div class="boxes">
-            <div class="box">
-                <h2>Private and Public Spaces</h2>
-                <p>Choose from a variety of private rooms or enjoy shared areas<br/>
-                where you can meet others and relax.</p>
-            </div>
-            <div class="box">
-                <h2>Affordable Getaway</h2>
-                <p>Our goal is to offer peace without the luxury price.</p>
-            </div>
-            <div class="box">
-                <h2>Friendly Atmosphere</h2>
-                <p>Our team is here to make sure your stay is as comfortable and enjoyable as possible. Expect a welcoming environment and warm hospitality.</p>
-            </div>
-        </div>
+  <!-- Room cards container -->
+  <div id="room-cards"></div>
+
+  <!-- Unique Modal structure -->
+  <div id="unique-modal" class="unique-modal">
+    <div class="unique-modal-content">
+      <img id="modal-image" src="" alt="Room Image">
+      <h2 id="modal-title">Room Note</h2>
+      <p id="modal-description"></p>
+      <button onclick="closeModal()">Close</button>
     </div>
-    <style>
-        /* Base Styles */
-.choose_albertos {
-    padding: 20px;
-    text-align: center;
-}
+  </div>
 
-h3 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-}
+  <script>
+    // Room data with names, images, prices, and notes
+    const rooms = [
+      { name: 'Room A', image: 'https://via.placeholder.com/300?text=Room+A', note: 'This room has a balcony.' },
+      { name: 'Room B', image: 'https://via.placeholder.com/300?text=Room+B', note: 'This room has a king-sized bed.' },
+      { name: 'Room C', image: 'https://via.placeholder.com/300?text=Room+C', note: 'This room offers sea views.' },
+      { name: 'Room D', image: 'https://via.placeholder.com/300?text=Room+D', note: 'This room includes free breakfast.' },
+      { name: 'Room E', image: 'https://via.placeholder.com/300?text=Room+E', note: 'This room is pet-friendly.' },
+      { name: 'Room F', image: 'https://via.placeholder.com/300?text=Room+F', note: 'This room has a jacuzzi.' },
+    ];
+    const price = 'P200';
 
-.boxes {
-    display: flex;
-    justify-content: space-around;
-    gap: 20px;
-    flex-wrap: wrap;
-}
+    // Get the container for room cards
+    const container = document.getElementById('room-cards');
 
-.box {
-    background-color: #f4f4f4;
-    padding: 20px;
-    width: 30%;
-    min-width: 250px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
+    // Create room cards dynamically
+    rooms.forEach(room => {
+      const card = document.createElement('div');
+      card.className = 'room-card';
 
-h2 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-}
+      // Add image
+      const img = document.createElement('img');
+      img.src = room.image;
+      img.alt = room.name;
 
-p {
-    font-size: 1rem;
-    line-height: 1.5;
-}
+      // Add room name and price
+      const description = document.createElement('p');
+      description.textContent = `${room.name} - ${price}`;
 
-/* Responsive Styles */
-@media screen and (max-width: 768px) {
-    h3 {
-        font-size: 1.5rem;
+      // Button container
+      const buttonContainer = document.createElement('div');
+      buttonContainer.className = 'button-container';
+
+      // Add book button
+      const bookButton = document.createElement('button');
+      bookButton.className = 'book-button';
+      bookButton.textContent = 'Book Now';
+
+      // Add note button
+      const noteButton = document.createElement('button');
+      noteButton.className = 'note-button';
+      noteButton.textContent = 'Note';
+      noteButton.onclick = () => openModal(room.name, room.note, room.image);
+
+      // Append buttons to the container
+      buttonContainer.appendChild(bookButton);
+      buttonContainer.appendChild(noteButton);
+
+      // Append elements to the card
+      card.appendChild(img);
+      card.appendChild(description);
+      card.appendChild(buttonContainer);
+
+      // Append card to the container
+      container.appendChild(card);
+    });
+
+    // Modal functionality
+    const modal = document.getElementById('unique-modal');
+    const modalImage = document.getElementById('modal-image');
+    const modalTitle = document.getElementById('modal-title');
+    const modalDescription = document.getElementById('modal-description');
+
+    function openModal(title, description, image) {
+      modalTitle.textContent = title;
+      modalDescription.textContent = description;
+      modalImage.src = image;
+      modal.style.display = 'flex';
     }
 
-    .boxes {
-        flex-direction: column;
-        align-items: center;
+    function closeModal() {
+      modal.style.display = 'none';
     }
-
-    .box {
-        width: 80%;
-        margin-bottom: 20px;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    h3 {
-        font-size: 1.2rem;
-    }
-
-    .box {
-        width: 90%;
-        padding: 15px;
-    }
-
-    h2 {
-        font-size: 1.2rem;
-    }
-
-    p {
-        font-size: 0.9rem;
-    }
-}
-
-    </style>
-  </body>
-  </html>
-    
-
-
-
- 
-
-   
-  
- 
+  </script>
 </body>
 </html>
