@@ -172,6 +172,7 @@ function Homepage() {
                           onChange={(e) => setPassword(e.target.value)}
                         />
                       </div>
+                      <p>Don't Have an <a href="SignUp">Account</a></p>
                       <button type="submit" className="btn btn-primary btn-block">Login</button>
                     </form>
 

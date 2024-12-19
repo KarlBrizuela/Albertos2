@@ -163,7 +163,7 @@ const Dashboard = () => {
       <aside style={styles.navbar}>
         <ul style={styles.navbarUl}>
           <Link to="/Dashboard">
-            <li style={{ ...styles.navbarLi, fontWeight: 'bold', color: '#02311F', fontSize: '20px' }}>
+            <li style={{ ...styles.navbarLi, fontWeight: 'bold', color: 'red', fontSize: '20px' }}>
               <i className="fas fa-home" style={{ fontSize: '18px', }}></i> Dashboard
             </li>
           </Link>

@@ -103,7 +103,7 @@ function Signup() {
             placeholder="Confirm your password"
           />
         </div>
-        <p>Already have an Account? <a href="http://localhost:3001/">Log in</a></p>
+        <p>Already have an Account? <a href="http://localhost:3000/#contact">Log in</a></p>
         <button type="submit" className="signup-button">
           Sign Up
         </button>
