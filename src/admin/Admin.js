@@ -20,8 +20,7 @@ const Admin = () => {
           <Sidebar />
           <Col xs={9} className="p-4">
             <Routes>
-              <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/bookingAdmin" element={<BookingAdmin />} />
+             
               <Route path="/rooms" element={<Rooms />} />
               <Route path="/Guest" element={<Guest />} />
               <Route path="/message" element={<Message />} />

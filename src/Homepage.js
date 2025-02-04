@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect , useRef} from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js"; // Include for Bootstrap JS functionality
 import "./navbar.css";
 import "./homepage.css";
 import axios from "axios"; // Ensure axios is imported after installing it
+import emailjs from '@emailjs/browser';
 
 function Homepage() {
   const [email, setEmail] = useState('');
@@ -14,22 +15,27 @@ function Homepage() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/login', { email, password });
-
+      // Send login request
+      const response = await axios.post('http://localhost:5000/login',{ email, password });
+    
       // Store token in localStorage
       localStorage.setItem('token', response.data.token);
-
-      // Fetch user details
+    
+      // Fetch user details with the token
       const userResponse = await axios.get('http://localhost:5000/getUser', {
         headers: { Authorization: `Bearer ${response.data.token}` },
       });
+    
+      // Set user data in state
       setUser(userResponse.data);
+    
       alert('Login successful');
       setShowModal(false);
     } catch (error) {
       console.error('Login error:', error);
       alert('Invalid credentials');
     }
+    
   };
 
   const handleLogout = () => {
@@ -71,6 +77,35 @@ function Homepage() {
       localStorage.removeItem('user'); // Remove user data if user is logged out
     }
   }, [user]); // Run whenever user state changes
+
+  const formRef = useRef(null); // <-- This is where you declare the formRef
+
+  // Initialize EmailJS with your user ID
+  useEffect(() => {
+    emailjs.init("LFqNWvGmc8v45Mbs1"); // Replace with your actual user ID
+  }, []); // Empty dependency array ensures this runs once
+
+  const CLIENT_ID = '683237718331-6eaq4cagkj309up4vmfig4lv1k4t9q0m.apps.googleusercontent.com';
+  const SCOPES = 'https://www.googleapis.com/auth/gmail.readonly';
+
+  // Handle EmailJS form submission
+  const handleEmailSubmit = (e) => {
+    e.preventDefault();
+    if (formRef.current) {
+      emailjs.sendForm("service_wzpd69m", "template_c7d7axr", formRef.current)
+        .then((response) => {
+          console.log("Success:", response);
+          alert("Message sent successfully!");
+          formRef.current.reset(); // Reset the form after successful submission
+        })
+        .catch((error) => {
+          console.log("Error:", error);
+          alert("Failed to send message. Please try again.");
+        });
+    }
+  };
+
+
 
   return (
     <>
@@ -155,19 +190,19 @@ function Homepage() {
             <div className="modal-body p-4">
             <form onSubmit={handleLogin}>
                       <div className="form-outline mb-4">
-                        <label className="form-label" htmlFor="email1">Email address</label>
+                        <label className="form-label" htmlFor="email">Email address</label>
                         <input
                           type="email"
-                          id="email1"
+                          id="email"
                           className="form-control"
                           onChange={(e) => setEmail(e.target.value)}
                         />
                       </div>
                       <div className="form-outline mb-4">
-                        <label className="form-label" htmlFor="password1">Password</label>
+                        <label className="form-label" htmlFor="password">Password</label>
                         <input
                           type="password"
-                          id="password1"
+                          id="password"
                           className="form-control"
                           onChange={(e) => setPassword(e.target.value)}
                         />
@@ -540,7 +575,7 @@ function Homepage() {
 
     
     <div class="contact-right">
-      <form>
+      <form ref={formRef} onSubmit={handleEmailSubmit}>
         <div class="form-group" method="POST" action="/send-email">
           <label for="name">Your Name</label>
           <input type="text" id="name" name="user_name" placeholder="Enter your name" required></input>
@@ -555,7 +590,7 @@ function Homepage() {
         </div>
         <div class="form-group">
           <label for="message">Message</label>
-          <textarea id="message" placeholder="Write your message here" rows="5" required></textarea>
+          <textarea id="message" name="message" placeholder="Write your message here" rows="5" required></textarea>
         </div>
         <button type="submit">Send Message</button>
       </form>

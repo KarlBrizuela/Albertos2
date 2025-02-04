@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-const Dashboard = () => {
+const BookingAdmin = () => {
   const [bookings, setBookings] = useState([
     { id: 1, name: 'John Doe', time: '10:00 AM', color: '#ffb3b3', checkIn: '', checkOut: '', adults: 0, kids: 0 },
     { id: 2, name: 'Jane Smith', time: '11:00 AM', color: '#cce7ff', checkIn: '', checkOut: '', adults: 0, kids: 0 },
@@ -160,7 +160,7 @@ const Dashboard = () => {
     <>
       <header style={styles.header}>
         <div className="logo">
-          <img src="Albertos-logo.png" alt="Logo" style={styles.logoImg} />
+          <img src="albertos_logo.png" alt="Logo" style={styles.logoImg} />
         </div>
         <div style={styles.headerIcons}>
           <i className="fas fa-bell notification" style={styles.headerIcon}></i>
@@ -168,22 +168,30 @@ const Dashboard = () => {
         </div>
       </header>
 
-      <aside style={styles.navbar}>
-        <ul style={styles.navbarUl}>
-          <Link to="/Dashboard">
-            <li style={styles.navbarLi}>Dashboard</li>
-          </Link>
-          <Link to="/BookingAdmin">
-            <li style={{ ...styles.navbarLi, fontWeight: 'bold', color: 'red' }}>Booking</li>
-          </Link>
-          <Link to="/Guest">
-            <li style={styles.navbarLi}>Guest</li>
-          </Link>
-          <Link to="/Rooms">
-            <li style={styles.navbarLi}>Room</li>
-          </Link>
-        </ul>
-      </aside>
+       <aside style={styles.navbar}>
+             <ul style={styles.navbarUl}>
+               <Link to="/Dashboard">
+                 <li style={styles.navbarLi}>
+                   <i className="fas fa-home" style={{ fontSize: '18px', }}></i> Dashboard
+                 </li>
+               </Link>
+               <Link to="/BookingAdmin">
+                 <li style={{...styles.navbarLi, fontWeight: 'bold', color: 'red', fontSize: '20px' }}>
+                   <i className="fas fa-history" style={{ fontSize: '18px' }}></i> Booking
+                 </li>
+               </Link>
+               <Link to="/Guest">
+                 <li style={styles.navbarLi}>
+                   <i className="fas fa-users" style={{ fontSize: '18px' }}></i> Guest
+                 </li>
+               </Link>
+               <Link to="/Rooms">
+                 <li style={styles.navbarLi}>
+                   <i className="fas fa-list" style={{ fontSize: '18px' }}></i> Room
+                 </li>
+               </Link>
+             </ul>
+           </aside>
 
       <main style={styles.main}>
         <h1 style={styles.heading}>Booking</h1>
@@ -262,4 +270,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default BookingAdmin;
