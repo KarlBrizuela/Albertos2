@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import "./booking.css";
 import Homepage from "./Homepage";
 import paypalbutton from "./paypalbutton";
+import GodotGame from "./Godotgame";
 
 
 
@@ -402,6 +403,9 @@ function Booking() {
     </PayPalScriptProvider>
 
       </div>
+
+      <h1>godot game</h1>
+      <GodotGame/>
     </>
   );
 }
